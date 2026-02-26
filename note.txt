@@ -1,0 +1,149 @@
+        lea rsi, [rel message]
+
+en ayant rajouté rel et [] a message je peux compiler sans -no-pie
+
+    PIE = Position Independent Executable
+
+    Ça veut dire :
+    L’exécutable peut être chargé à n’importe quelle adresse en mémoire.
+
+    Pourquoi ?
+    👉 Pour la sécurité (ASLR = Address Space Layout Randomization)
+
+    Les Linux modernes compilent par défaut en PIE.
+
+
+    🎯 5️⃣ Différence concrète
+    Sans PIE
+
+    Adresse fixe
+    Plus simple
+    Moins sécurisé
+
+    Avec PIE
+
+    Adresse aléatoire
+    Plus sécurisé
+    Oblige à utiliser RIP-relative
+
+    🧠 6️⃣ Pourquoi Linux active PIE par défaut ?
+
+    Pour empêcher :
+    exploits
+    buffer overflow avec adresse fixe
+    ret2libc simple
+
+    C’est une protection moderne.
+
+
+
+
+    [rel ...] c’est la clé pour comprendre le PIE en 64 bits.
+
+🎯 1️⃣ C’est quoi [rel label] ?
+
+rel veut dire :
+
+adresse relative à RIP
+
+En x86_64, le CPU peut adresser la mémoire par rapport à RIP (le pointeur d’instruction).
+
+RIP = registre qui contient l’adresse de l’instruction en cours.
+
+🧠 2️⃣ Pourquoi on en a besoin ?
+
+En 64 bits moderne (PIE activé) :
+
+❌ Les adresses absolues sont interdites
+✅ On doit utiliser des adresses relatives
+
+Donc au lieu de dire :
+
+mov rsi, message   ; adresse absolue
+
+On dit :
+
+lea rsi, [rel message]
+
+Ce qui signifie :
+
+rsi = adresse de message, calculée relativement à RIP
+
+🎯 3️⃣ Concrètement, qu’est-ce que ça change ?
+
+Imagine que ton programme est chargé ici :
+
+0x555555554000
+
+Si tu utilises une adresse absolue codée en dur :
+
+mov rsi, 0x404020
+
+Ça ne marchera pas si le programme est chargé ailleurs.
+
+Mais avec RIP-relative :
+
+adresse = RIP + offset
+
+Donc peu importe où le programme est chargé → ça fonctionne.
+
+🎯 4️⃣ Pourquoi on met des crochets ?
+
+En assembleur :
+
+[ ... ]  → accès mémoire
+
+Donc :
+
+lea rsi, [rel message]
+
+veut dire :
+
+calcule l’adresse de message relativement à RIP
+et mets cette adresse dans rsi
+
+⚠️ lea ne lit PAS la mémoire, il calcule une adresse.
+
+🧠 5️⃣ Différence importante
+❌ Faux (en PIE) :
+mov rsi, message
+
+→ nécessite relocation absolue
+
+✅ Correct :
+lea rsi, [rel message]
+
+→ RIP-relative, compatible PIE
+
+🎯 6️⃣ Pourquoi lea et pas mov ?
+
+Si tu fais :
+
+mov rsi, [rel message]
+
+Ça voudrait dire :
+lis le contenu mémoire de message
+
+Alors que toi tu veux :
+l’adresse de message
+
+Donc on utilise lea (Load Effective Address).
+
+🔥 Résumé simple
+Instruction	Signification
+mov rsi, message	adresse absolue
+lea rsi, [rel message]	adresse relative à RIP
+[ ... ]	accès mémoire
+lea	calcul d’adresse
+🧩 Image mentale
+
+Sans rel :
+
+rsi = 0x404020
+
+Avec rel :
+
+rsi = RIP + 0x123
+
+Donc ça marche même si le programme bouge en mémoire.
+
