@@ -6,12 +6,13 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/02/26 00:35:53 by phwang           ###   ########.fr        #
+#    Updated: 2026/02/26 15:45:59 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = test
+NAME = libasm
+NAME_TRY = test
 
 LINKER = cc
 LINKER_FLAGS = -Wall -Wextra -Werror -g3
@@ -33,6 +34,25 @@ ALL_OBJS = $(ALL_FILES:$(SRC_DIR)%.s=$(OBJ_DIR)/%.o)
 
 
 
+TRY_DIR = try/
+OBJ_TRY_DIR = obj_try
+
+#SRC FILES
+TRYSRC_DIR = $(TRY_DIR)src
+TRYSRC_FILES = \
+		ft_strlen.s 
+TRYSRC = $(addprefix $(TRYSRC_DIR)/, $(TRYSRC_FILES))
+
+TRYSRC_ALL_FILES = \
+		$(TRYSRC) \
+		$(TRY_DIR)main.s
+
+TRY_SRCS  = $(addprefix , $(TRYSRC_ALL_FILES))
+TRY_OBJS = $(TRY_SRCS:$(TRY_DIR)%.s=$(OBJ_TRY_DIR)/%.o)
+
+
+
+
 all: $(NAME)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)%.s 
@@ -43,11 +63,22 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)%.s
 $(NAME) : $(ALL_OBJS)
 	$(LINKER) $(LINKER_FLAGS) $(ALL_OBJS) -o $(NAME)
 
+
+try: $(NAME_TRY) 
+
+$(OBJ_TRY_DIR)/%.o : $(TRY_DIR)%.s 
+	@mkdir -p $(dir $@)
+	$(COMPILER) $(COMPILER_FLAGS) $< -o $@
+
+$(NAME_TRY) : $(TRY_OBJS)
+	$(LINKER) $(LINKER_FLAGS) $(TRY_OBJS) -o $(NAME_TRY)
+
+
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) $(OBJ_TRY_DIR)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME_TRY)
 
 re: fclean all
 
