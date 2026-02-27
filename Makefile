@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/02/26 15:45:59 by phwang           ###   ########.fr        #
+#    Updated: 2026/02/27 01:27:34 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,20 +40,28 @@ OBJ_TRY_DIR = obj_try
 #SRC FILES
 TRYSRC_DIR = $(TRY_DIR)src
 TRYSRC_FILES = \
-		ft_strlen.s 
+		ft_strlen.s \
+		ft_strcpy.s 
 TRYSRC = $(addprefix $(TRYSRC_DIR)/, $(TRYSRC_FILES))
 
 TRYSRC_ALL_FILES = \
 		$(TRYSRC) \
-		$(TRY_DIR)main.s
+		$(TRY_DIR)main.c
 
 TRY_SRCS  = $(addprefix , $(TRYSRC_ALL_FILES))
 TRY_OBJS = $(TRY_SRCS:$(TRY_DIR)%.s=$(OBJ_TRY_DIR)/%.o)
 
 
+all: $(NAME_TRY) 
 
+$(OBJ_TRY_DIR)/%.o : $(TRY_DIR)%.s 
+	@mkdir -p $(dir $@)
+	$(COMPILER) $(COMPILER_FLAGS) $< -o $@
 
-all: $(NAME)
+$(NAME_TRY) : $(TRY_OBJS)
+	$(LINKER) $(LINKER_FLAGS) $(TRY_OBJS) -o $(NAME_TRY)
+
+lib: $(NAME)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)%.s 
 	@mkdir -p $(dir $@)
@@ -64,14 +72,6 @@ $(NAME) : $(ALL_OBJS)
 	$(LINKER) $(LINKER_FLAGS) $(ALL_OBJS) -o $(NAME)
 
 
-try: $(NAME_TRY) 
-
-$(OBJ_TRY_DIR)/%.o : $(TRY_DIR)%.s 
-	@mkdir -p $(dir $@)
-	$(COMPILER) $(COMPILER_FLAGS) $< -o $@
-
-$(NAME_TRY) : $(TRY_OBJS)
-	$(LINKER) $(LINKER_FLAGS) $(TRY_OBJS) -o $(NAME_TRY)
 
 
 clean:
@@ -82,4 +82,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re try

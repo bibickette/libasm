@@ -1,3 +1,11 @@
+◦ ft_strlen (man 3 strlen)
+◦ ft_strcpy (man 3 strcpy)
+◦ ft_strcmp (man 3 strcmp)
+◦ ft_write (man 2 write)
+◦ ft_read (man 2 read)
+◦ ft_strdup (man 3 strdup, you can call to malloc)
+
+
         lea rsi, [rel message]
 
 en ayant rajouté rel et [] a message je peux compiler sans -no-pie
@@ -147,3 +155,14 @@ rsi = RIP + 0x123
 
 Donc ça marche même si le programme bouge en mémoire.
 
+
+
+declarer unefonction dans mon .c
+    extern size_t ft_strlen(const char *s)
+on met le mot externe puis apres on definit la fonction
+si on veut avoir le meme comportement que la fonciton en c on peut aller voir dans le header si il ya des refus
+exemple strlen ne prends pas des pointeurs null et refuse la compilation si ilyen a un grace a un throw indique juste apres dans le .h
+
+/* Return the length of S.  */
+extern size_t strlen (const char *__s)
+     __THROW __attribute_pure__ __nonnull ((1));
