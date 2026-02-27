@@ -6,62 +6,44 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/02/27 16:24:38 by phwang           ###   ########.fr        #
+#    Updated: 2026/02/27 16:20:36 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = libasm.a
-NAME_TRY = test
-
-CC = cc
-INCLUDE = try/include
-CC_FLAGS = -Wall -Wextra -Werror -g3 -I$(INCLUDE)
 
 NASM = nasm
 NASM_FLAGS = -f elf64 -g
 
-
-TRY_DIR = try/
-OBJ_TRY_DIR = obj_try
+# Source directories
+SRC_DIR = src/
+OBJ_DIR = obj
 
 #SRC FILES
-TRYSRC_DIR = $(TRY_DIR)src
-TRYSRC_FILES = \
-		ft_strlen.s \
-		ft_strcpy.s 
-TRYSRC = $(addprefix $(TRYSRC_DIR)/, $(TRYSRC_FILES))
+SRC_FILES = \
+		ft_strlen.s
 
-TRYSRC_ALL_FILES = \
-		$(TRYSRC) \
-		$(TRY_DIR)main.c
-
-TRY_SRCS  = $(addprefix , $(TRYSRC_ALL_FILES))
-TRY_OBJS = $(TRY_SRCS:$(TRY_DIR)%.s=$(OBJ_TRY_DIR)/%.o)
+ALL_FILES =  $(addprefix $(SRC_DIR), $(SRC_FILES))
+ALL_OBJS = $(ALL_FILES:$(SRC_DIR)%.s=$(OBJ_DIR)/%.o)
 
 
-all: $(NAME_TRY) 
+all:$(NAME)
 
-$(OBJ_TRY_DIR)/%.o : $(TRY_DIR)%.s 
+$(OBJ_DIR)/%.o : $(SRC_DIR)%.s 
 	@mkdir -p $(dir $@)
 	$(NASM) $(NASM_FLAGS) $< -o $@
 
-$(NAME_TRY) : $(TRY_OBJS)
-	$(CC) $(CC_FLAGS) $(TRY_OBJS) -o $(NAME_TRY)
 
-lib: 
-	make -sC libasm
-
-
+$(NAME) : $(ALL_OBJS)
+	@ar -rcs $(NAME) $(ALL_OBJS)
 
 
 clean:
-	make -sC libasm clean
-	@rm -rf $(OBJ_DIR) $(OBJ_TRY_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	make -sC libasm fclean
-	@rm -f $(NAME) $(NAME_TRY)
+	@rm -f $(NAME)
 
 re: fclean all
 

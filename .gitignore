@@ -3,3 +3,5 @@ obj_try/
 test
 prog
 a.out
+libasm.a
+.vscode

@@ -3,14 +3,14 @@ bits 64
 extern printf
 
 global ft_strlen
-section .data
-    message: db "end", 10 ; 3
-    message2: db "char = %c", 0 ; 8
-    fmt db "char : %c",10, 0
+; section .data
+;     message: db "end", 10 ; 3
+;     message2: db "char = %c", 0 ; 8
+;     fmt db "char : %c",10, 0
 
 section .text
     ft_strlen:
-        mov rbx, rdi
+        mov rbx, rdi ; save arg0 in rbx
         .loop:
             mov al, byte [rbx] ; pas obligé decrire byte mais au moins ca precise bien
 
@@ -26,6 +26,6 @@ section .text
 
         .end:
 
-            sub rbx, rdi
+            sub rbx, rdi ; rbx - rdi = length of the string
             mov rax, rbx
             ret
