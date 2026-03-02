@@ -57,9 +57,9 @@ The goal is to understand what happens “under the hood” in C programs by wor
 - `ft_strlen` : returns the length of a string.
 - `ft_strcpy` : copies a string from `src` to `dst`.
 - `ft_strcmp` : compares two strings.
-- `ft_strdup` : duplicates a string (allocates memory and copies).
 - `ft_write` : writes to a file descriptor (usually via syscall or libc wrapper, depending on requirements).
 - `ft_read` : reads from a file descriptor.
+- `ft_strdup` : duplicates a string (allocates memory and copies).
 
 
 * * *
