@@ -64,9 +64,9 @@ The goal is to understand what happens “under the hood” in C programs by wor
 
 * * *
 
-## How to use `libasm`
+# How to use `libasm`
 
-### Makefile rules
+## Makefile rules
 
 Typical Makefile targets (adapt as needed):
 1. **all** : build `libasm.a`
@@ -75,14 +75,14 @@ Typical Makefile targets (adapt as needed):
 4. **re** : *fclean* + *all*
 5. **test** : build and run all tests programs
 
-### How to use `libasm`
+## How to use `libasm`
 
 1. Clone `libasm` in a folder first  : `git clone git@github.com:bibickette/libasm.git`
 2. Go to the `libasm` folder then compile it : `cd libasm && make` ; it will generate an executable for each function in the library
 3. You can now run a specific function test : `./ft_strlen`, or run all tests at once : `make test`
 
 
-### Valgrind & memory checks
+## Valgrind & memory checks
 
 *`libasm` was tested using **Valgrind** to ensure there are no memory leaks and that all allocated memory is properly freed.*
 
