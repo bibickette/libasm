@@ -72,7 +72,7 @@ Typical Makefile targets (adapt as needed):
 1. **all** : build `libasm.a`
 2. **clean** : remove `.o` object files
 3. **fclean** : remove `.o` and `libasm.a`
-4. **re** : `fclean` + `all`
+4. **re** : *fclean* + *all*
 5. **test** : build and run all tests programs
 
 ### How to use `libasm`
