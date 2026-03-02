@@ -21,12 +21,22 @@ extern int ft_strcmp (const char *__s1, const char *__s2)
      __THROW __attribute_pure__ __nonnull ((1, 2));
 
 
-     
+
 /* Write N bytes of BUF to FD.  Return the number written, or -1.
 
    This function is a cancellation point and therefore not marked with
    __THROW.  */
 extern ssize_t ft_write (int __fd, const void *__buf, size_t __n) __wur
     __attr_access ((__read_only__, 2, 3));
+
+
+
+/* Read NBYTES into BUF from FD.  Return the
+   number read, -1 for errors or 0 for EOF.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */
+extern ssize_t ft_read (int __fd, void *__buf, size_t __nbytes) __wur
+    __fortified_attr_access (__write_only__, 2, 3);
 
 #endif
