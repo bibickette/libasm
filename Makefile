@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/02 18:45:57 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 23:32:42 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,11 @@ TARGETS = $(TESTER_FILES:.c=)
 PMANDATORY =  $(addprefix , $(TESTER))
 M_OBJS = $(PMANDATORY:$(SRC_DIR)%.c=$(OBJ_DIR)/%.o)
 
+#COLOR SET
+COLOR_RESET = \e[0m
+COLOR_GREEN = \e[32m
+COLOR_BLUE = \e[34m
+
 
 all: $(TARGETS) $(M_OBJS)
 
@@ -63,9 +68,9 @@ re: fclean all
 test: all
 	@echo "Running all tests..."
 	@for t in $(TARGETS); do \
-		echo "=== Running $$t ==="; \
+		echo "$(COLOR_BLUE);=== Running $$t ===$(COLOR_RESET)"; \
 		./$$t; \
-		echo ""; \
+		echo "$(COLOR_GREEN);=== End $$t ===$(COLOR_RESET)"; \
 	done
 
 .PHONY: all clean fclean re 

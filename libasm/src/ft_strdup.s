@@ -14,6 +14,7 @@ section .text
         mov rbx, rdi ; sauvegarder le rdi : src
         call ft_strlen ; calculer len src
 
+        inc rax ; ajouter 1 pour le \0
         mov rdi, rax ; result dans arg0 pour malloc
         call malloc wrt ..plt ; et larg 0 cest le len
         test rax, rax ; test si result malloc null
