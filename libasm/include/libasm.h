@@ -39,4 +39,10 @@ extern ssize_t ft_write (int __fd, const void *__buf, size_t __n) __wur
 extern ssize_t ft_read (int __fd, void *__buf, size_t __nbytes) __wur
     __fortified_attr_access (__write_only__, 2, 3);
 
+
+
+/* Duplicate S, returning an identical malloc'd string.  */
+extern char *ft_strdup (const char *__s)
+     __THROW __attribute_malloc__ __nonnull ((1));
+
 #endif

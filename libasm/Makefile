@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/02 17:49:34 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 18:00:36 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OBJ_DIR = obj
 #SRC FILES
 SRC_FILES = \
 		ft_read.s \
+		ft_strdup.s \
 		ft_write.s \
 		ft_strcmp.s \
 		ft_strlen.s \

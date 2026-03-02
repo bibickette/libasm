@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/02 17:39:57 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 18:20:36 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = test
 
 CC = cc
 INCLUDE = libasm/include
-CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE) -std=c99
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE)
 
 LIBASM = libasm/libasm.a
 
@@ -29,7 +29,8 @@ TESTER_FILES = \
 		ft_read.c \
 		ft_write.c \
 		ft_strcmp.c \
-		ft_strlen.c
+		ft_strlen.c \
+		ft_strdup.c 
 TESTER = $(addprefix $(TESTER_DIR), $(TESTER_FILES))
 
 # Enlever .c pour créer les noms des exécutables
