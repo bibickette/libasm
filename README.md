@@ -82,6 +82,13 @@ Typical Makefile targets (adapt as needed):
 3. You can now run a specific function test : `./ft_strlen`, or run all tests at once : `make test`
 
 
+### Valgrind & memory checks
+
+*`libasm` was tested using **Valgrind** to ensure there are no memory leaks and that all allocated memory is properly freed.*
+
+You can run tests with **Valgrind** using the following command : `valgrind --leak-check=full --show-leak-kinds=all ./ft_strdup`
+
+
 * * *
 
 *Project validation date : TBD*
