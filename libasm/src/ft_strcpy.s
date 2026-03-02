@@ -1,6 +1,6 @@
 bits 64
 
-extern printf
+; extern printf
 
 global ft_strcpy
 

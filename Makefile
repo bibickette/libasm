@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/02 14:56:28 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 15:07:36 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJ_DIR = obj
 TESTER_DIR = $(SRC_DIR)
 TESTER_FILES = \
 		ft_strcpy.c \
+		ft_strcmp.c \
 		ft_strlen.c
 TESTER = $(addprefix $(TESTER_DIR), $(TESTER_FILES))
 
