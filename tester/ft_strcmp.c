@@ -18,8 +18,14 @@
 int main(void) {
     // test_strcmp("", "");
 
-    printf("my strcmp %d\n", ft_strcmp("a", "a"));
-    printf("strcmp %d\n", strcmp("a", "a"));
+    printf("my strcmp %d\n", ft_strcmp("a", "b"));
+    printf("strcmp %d\n", strcmp("a", "b"));
+        printf("my strcmp %d\n", ft_strcmp("a", "ab"));
+    printf("strcmp %d\n", strcmp("a", "ab"));
+        printf("my strcmp %d\n", ft_strcmp("a", ""));
+    printf("strcmp %d\n", strcmp("a", ""));
+        printf("my strcmp %d\n", ft_strcmp("", "ab"));
+    printf("strcmp %d\n", strcmp("", "ab"));
     // test_strcmp("abc", "abc");
     // test_strcmp("abc", "abcd");
     // test_strcmp("abcd", "abc");

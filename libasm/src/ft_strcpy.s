@@ -1,28 +1,12 @@
 bits 64
 
-; extern printf
-
 global ft_strcpy
-
-; section .data
-;     message: db "str1 = %s", 0 ; 3
-;     message2: db "str2 = %s", 0 ; 3
 
 section .text
     ft_strcpy:
-        push rbx
+        push rbx ; callee-saved so value need to be restaured at the end
         mov rbx, rdi ; save arg0 in rbx = dest
         mov rdx, rsi ; save arg1 in rdx = src
-        
-        ; lea rdi, [rel message] ; crochet ca veut dire recupere le premier byte de la zone memoire ou il est
-        ; mov rsi, rbx
-        ; mov rax, 0
-        ; call printf wrt ..plt
-
-        ; lea rdi, [rel message2] 
-        ; mov rsi, rdx
-        ; mov rax, 0
-        ; call printf wrt ..plt
         
         .loop:
             mov al, byte [rdx] ; first byte of rdx(arg1 = src) save in al
@@ -36,5 +20,5 @@ section .text
 
         .end:
             mov rax, rdi ; return dest (arg0) in rax
-            pop rbx
+            pop rbx ; restaure callee-saved rbx value
             ret
