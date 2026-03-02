@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/02 18:20:36 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 18:45:57 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,20 +44,28 @@ all: $(TARGETS) $(M_OBJS)
 
 $(OBJ_DIR)/%.o :  $(SRC_DIR)%.c 
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 %: $(OBJ_DIR)/%.o
 	@make -s -C libasm
-	$(CC) $(CFLAGS) $< -o $@ $(LIBASM)
+	@$(CC) $(CFLAGS) $< -o $@ $(LIBASM)
 
 clean:
 	@make -s -C libasm clean
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@make -s -C libasm fclean
-	rm -f $(TARGETS)
+	@rm -f $(TARGETS)
 
 re: fclean all
+
+test: all
+	@echo "Running all tests..."
+	@for t in $(TARGETS); do \
+		echo "=== Running $$t ==="; \
+		./$$t; \
+		echo ""; \
+	done
 
 .PHONY: all clean fclean re 
