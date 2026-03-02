@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/02 14:50:57 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 14:56:28 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = test
 
 CC = cc
 INCLUDE = libasm/include
-CFLAGS = -Wall -Wextra -I$(INCLUDE) -std=c99
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE) -std=c99
 
 LIBASM = libasm/libasm.a
 
