@@ -10,6 +10,7 @@ global ft_strcpy
 
 section .text
     ft_strcpy:
+        push rbx
         mov rbx, rdi ; save arg0 in rbx = dest
         mov rdx, rsi ; save arg1 in rdx = src
         
@@ -35,4 +36,5 @@ section .text
 
         .end:
             mov rax, rdi ; return dest (arg0) in rax
+            pop rbx
             ret

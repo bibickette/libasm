@@ -6,4 +6,4 @@ a.out
 libasm.a
 .vscode
 
-ft_*
+/ft_* 
