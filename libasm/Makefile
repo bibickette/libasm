@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/02/27 16:20:36 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 14:51:45 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ OBJ_DIR = obj
 
 #SRC FILES
 SRC_FILES = \
-		ft_strlen.s
+		ft_strlen.s \
+		ft_strcpy.s
 
 ALL_FILES =  $(addprefix $(SRC_DIR), $(SRC_FILES))
 ALL_OBJS = $(ALL_FILES:$(SRC_DIR)%.s=$(OBJ_DIR)/%.o)

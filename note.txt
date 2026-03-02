@@ -166,3 +166,35 @@ exemple strlen ne prends pas des pointeurs null et refuse la compilation si ilye
 /* Return the length of S.  */
 extern size_t strlen (const char *__s)
      __THROW __attribute_pure__ __nonnull ((1));
+
+
+
+
+MAKEFILE NEED EXPLIQUATION
+
+%: $(OBJ_DIR)/%.o
+	make -s -C libasm
+	$(CC) $(CFLAGS) $< -o $@ $(LIBASM)
+
+le %
+
+
+all: $(TARGETS) $(M_OBJS)
+
+$(OBJ_DIR)/%.o :  $(SRC_DIR)%.c 
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+%: $(OBJ_DIR)/%.o
+	make -s -C libasm
+	$(CC) $(CFLAGS) $< -o $@ $(LIBASM)
+
+lordre
+
+TARGETS = $(TESTER_FILES:.c=)
+
+PMANDATORY =  $(addprefix , $(TESTER))
+M_OBJS = $(PMANDATORY:$(SRC_DIR)%.c=$(OBJ_DIR)/%.o)
+
+
+more details

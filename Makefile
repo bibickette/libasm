@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/02/27 16:53:33 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/02 14:50:57 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,39 +19,40 @@ CFLAGS = -Wall -Wextra -I$(INCLUDE) -std=c99
 LIBASM = libasm/libasm.a
 
 # Source directories
-SRC_DIR = tester
+SRC_DIR = tester/
 OBJ_DIR = obj
 
 
 TESTER_DIR = $(SRC_DIR)
 TESTER_FILES = \
+		ft_strcpy.c \
 		ft_strlen.c
-TESTER = $(addprefix $(TESTER_DIR)/, $(TESTER_FILES))
+TESTER = $(addprefix $(TESTER_DIR), $(TESTER_FILES))
 
+# Enlever .c pour créer les noms des exécutables
+TARGETS = $(TESTER_FILES:.c=)
 
 PMANDATORY =  $(addprefix , $(TESTER))
 M_OBJS = $(PMANDATORY:$(SRC_DIR)%.c=$(OBJ_DIR)/%.o)
 
 
-
-
-all: $(NAME)
+all: $(TARGETS) $(M_OBJS)
 
 $(OBJ_DIR)/%.o :  $(SRC_DIR)%.c 
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME) : $(M_OBJS)
-	@make -s -C libasm
-	@$(CC) $(CFLAGS) $(M_OBJS) -o $(NAME) $(LIBASM)
+%: $(OBJ_DIR)/%.o
+	make -s -C libasm
+	$(CC) $(CFLAGS) $< -o $@ $(LIBASM)
 
 clean:
-	@make -s -C libasm clean
-	@rm -rf $(OBJ_DIR)
+	make -s -C libasm clean
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@make -s -C libasm fclean
-	@rm -f $(NAME)
+	make -s -C libasm fclean
+	rm -f $(TARGETS)
 
 re: fclean all
 
