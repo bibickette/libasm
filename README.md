@@ -64,7 +64,7 @@ The goal is to understand what happens “under the hood” in C programs by wor
 
 * * *
 
-# How to use `libasm`
+# Using `libasm`
 
 ## Makefile rules
 
