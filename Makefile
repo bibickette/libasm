@@ -6,7 +6,7 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/05 23:40:11 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/05 23:45:33 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ M_OBJS = $(PMANDATORY:$(SRC_DIR)%.c=$(OBJ_DIR)/%.o)
 
 #COLOR SET
 COLOR_RESET = \e[0m
+COLOR_RED = \e[31m
 COLOR_GREEN = \e[32m
 COLOR_BLUE = \e[34m
 
@@ -66,7 +67,7 @@ fclean: clean
 re: fclean all
 
 test: all
-	@echo "Running all tests..."
+	@echo "$(COLOR_RED)Running all tests...$(COLOR_RESET)"
 	@for t in $(TARGETS); do \
 		echo "$(COLOR_BLUE);=== Running $$t ===$(COLOR_RESET)"; \
 		./$$t; \
