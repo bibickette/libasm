@@ -45,6 +45,7 @@ void test_both_read(int fd_ft, int fd_std, char *buf_ft, char *buf_std, size_t l
 
     if (ret_ft < 0 || ret_std < 0)
     {
+        printf("\n");
         return;
     }
 
@@ -53,6 +54,7 @@ void test_both_read(int fd_ft, int fd_std, char *buf_ft, char *buf_std, size_t l
         printf("[❌] Nombre d'octets lus différent :\n");
         printf("    ft_read() = %zd, errno = %d\n", ret_ft, errno);
         printf("    read()    = %zd, errno = %d\n", ret_std, errno);
+        printf("\n");
         return;
     }
     if (!compare_buffers(buf_std, buf_ft, ret_std))
@@ -60,12 +62,15 @@ void test_both_read(int fd_ft, int fd_std, char *buf_ft, char *buf_std, size_t l
         printf("[❌] Buffers différents !\n");
         printf("ft_read(): %s ", buf_ft);
         printf("read(): %s ", buf_std);
+        printf("\n");
         return;
     }
+    printf("\n");
 }
 
 int all_ft_read(void)
 {
+    printf("\n=================== Tests de ft_read ===================\n\n");
     int id = 1;
 
     int fd_read = open("./tester/data/test.txt", O_RDONLY);

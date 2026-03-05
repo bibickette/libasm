@@ -28,12 +28,13 @@ void test_strcpy(const char *src, int id) {
     } else if (ret_ft != dst_ft) {
         printf("[❌] ft_strcpy ne retourne pas dst\n");
     } else {
-        printf("[✅] OK pour test %d = %s\n", id, src);
+        printf("[✅] OK pour test %d = \"%s\"\n", id, src);
     }
 }
 
 int all_ft_strcpy(void)
 {
+    printf("\n=================== Tests de ft_strcpy ===================\n\n");
 
     int test_id = 1;
     test_strcpy("", test_id++);

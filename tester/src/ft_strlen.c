@@ -20,6 +20,8 @@ void test(const char *str, int id) {
 
 int all_ft_strlen(void)
 {
+    printf("\n=================== Tests de ft_strlen ===================\n\n");
+
     /* unlock les commentaires en dessous permettent de voir le comportement si on envoie null */
     // printf("len = %ld\n", ft_strlen(NULL));
     // printf("len = %ld\n", strlen(NULL));

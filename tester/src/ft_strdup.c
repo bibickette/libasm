@@ -3,26 +3,33 @@
 #include "libasm.h"
 #include <stdlib.h>
 
-
-void test_strdup(const char *src, int id) {
+void test_strdup(const char *src, int id)
+{
     char *std_res = strdup(src);
     char *ft_res = ft_strdup(src);
 
-    if (!std_res) {
+    if (!std_res)
+    {
         printf("[❌] strdup standard a retourné NULL\n");
+        printf("\n");
         return;
     }
-    if (!ft_res) {
+    if (!ft_res)
+    {
         printf("[❌] ft_strdup a retourné NULL\n");
         free(std_res);
+        printf("\n");
         return;
     }
 
-    if (strcmp(std_res, ft_res) != 0) {
+    if (strcmp(std_res, ft_res) != 0)
+    {
         printf("[❌] Contenu différent !\n");
         printf("strdup   : \"%s\"\n", std_res);
         printf("ft_strdup: \"%s\"\n", ft_res);
-    } else {
+    }
+    else
+    {
         printf("[✅] OK pour test %d = \"%s\"\n", id, src);
     }
 
@@ -30,7 +37,10 @@ void test_strdup(const char *src, int id) {
     free(ft_res);
 }
 
-int all_ft_strdup(void) {
+int all_ft_strdup(void)
+{
+    printf("\n=================== Tests de ft_strdup ===================\n\n");
+
     int test_id = 1;
 
     test_strdup("", test_id++);
