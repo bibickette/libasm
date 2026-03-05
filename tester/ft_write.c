@@ -35,7 +35,7 @@ void test_write(int fd, const void *data, size_t len, int id, ssize_t (*function
 
 void test_both_write(int fd_ft, int fd_regular, char *data, size_t len, int id){
     test_write(fd_ft, data, len, id, ft_write, FT_WRITE);
-    test_write(fd_regular, data, len, id, write, WRITE);
+    test_write(fd_regular, data, len, id, write, 0);
 }
 
 
