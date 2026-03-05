@@ -18,7 +18,7 @@ void test(const char *str, int id) {
     }
 }
 
-int main(void)
+int all_ft_strlen(void)
 {
     /* unlock les commentaires en dessous permettent de voir le comportement si on envoie null */
     // printf("len = %ld\n", ft_strlen(NULL));

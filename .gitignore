@@ -8,3 +8,4 @@ libasm.a
 
 /ft_* 
 test_*
+all_test

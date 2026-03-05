@@ -40,7 +40,7 @@ void test_both_write(int fd_ft, int fd_regular, char *data, size_t len, int id){
 }
 
 
-int main(void) {
+int all_ft_write(void) {
     int id = 1;
 
     int fd_ft = open("./tester/data/test_ft_write.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);

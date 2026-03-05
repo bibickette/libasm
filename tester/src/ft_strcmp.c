@@ -15,7 +15,7 @@ void test_strcmp(const char *s1, const char *s2, int id) {
     }
 }
 
-int main(void) {
+int all_ft_strcmp(void) {
     int test_id = 1;
     test_strcmp("", "", test_id++);
     test_strcmp("rien", "", test_id++);

@@ -64,7 +64,7 @@ void test_both_read(int fd_ft, int fd_std, char *buf_ft, char *buf_std, size_t l
     }
 }
 
-int main(void)
+int all_ft_read(void)
 {
     int id = 1;
 

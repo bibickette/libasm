@@ -6,15 +6,16 @@
 #    By: phwang <phwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 23:59:26 by phwang            #+#    #+#              #
-#    Updated: 2026/03/05 23:45:33 by phwang           ###   ########.fr        #
+#    Updated: 2026/03/06 00:07:37 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = test
+NAME = all_tests
 
 CC = cc
 INCLUDE = libasm/include
-CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE)
+TESTER_INCLUDE = tester/include
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE) -I$(TESTER_INCLUDE)
 
 LIBASM = libasm/libasm.a
 
@@ -23,7 +24,7 @@ SRC_DIR = tester/
 OBJ_DIR = obj
 
 
-TESTER_DIR = $(SRC_DIR)
+TESTER_DIR = $(SRC_DIR)src
 TESTER_FILES = \
 		ft_strlen.c \
 		ft_strcpy.c \
@@ -31,12 +32,15 @@ TESTER_FILES = \
 		ft_write.c \
 		ft_read.c \
 		ft_strdup.c 
-TESTER = $(addprefix $(TESTER_DIR), $(TESTER_FILES))
+		
+TESTER = $(addprefix $(TESTER_DIR)/, $(TESTER_FILES))
+
 
 # Enlever .c pour créer les noms des exécutables
-TARGETS = $(TESTER_FILES:.c=)
+ALL_FILES = $(TESTER) \
+			tester/main.c \
 
-PMANDATORY =  $(addprefix , $(TESTER))
+PMANDATORY =  $(addprefix , $(ALL_FILES))
 M_OBJS = $(PMANDATORY:$(SRC_DIR)%.c=$(OBJ_DIR)/%.o)
 
 #COLOR SET
@@ -46,15 +50,15 @@ COLOR_GREEN = \e[32m
 COLOR_BLUE = \e[34m
 
 
-all: $(TARGETS) $(M_OBJS)
+all: $(NAME)
 
 $(OBJ_DIR)/%.o :  $(SRC_DIR)%.c 
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-%: $(OBJ_DIR)/%.o
+$(NAME): $(M_OBJS)
 	@make -s -C libasm
-	@$(CC) $(CFLAGS) $< -o $@ $(LIBASM)
+	@$(CC) $(CFLAGS) $(M_OBJS) -o $(NAME) $(LIBASM)
 
 clean:
 	@make -s -C libasm clean
@@ -62,16 +66,9 @@ clean:
 
 fclean: clean
 	@make -s -C libasm fclean
-	@rm -f $(TARGETS)
+	@rm -f $(NAME)
 
 re: fclean all
 
-test: all
-	@echo "$(COLOR_RED)Running all tests...$(COLOR_RESET)"
-	@for t in $(TARGETS); do \
-		echo "$(COLOR_BLUE);=== Running $$t ===$(COLOR_RESET)"; \
-		./$$t; \
-		echo "$(COLOR_GREEN);=== End $$t ===$(COLOR_RESET)"; \
-	done
 
 .PHONY: all clean fclean re 

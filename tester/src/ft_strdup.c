@@ -30,7 +30,7 @@ void test_strdup(const char *src, int id) {
     free(ft_res);
 }
 
-int main(void) {
+int all_ft_strdup(void) {
     int test_id = 1;
 
     test_strdup("", test_id++);

@@ -32,7 +32,7 @@ void test_strcpy(const char *src, int id) {
     }
 }
 
-int main(void)
+int all_ft_strcpy(void)
 {
 
     int test_id = 1;
