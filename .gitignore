@@ -7,3 +7,4 @@ libasm.a
 .vscode
 
 /ft_* 
+test_*
