@@ -78,15 +78,15 @@ Typical Makefile targets (adapt as needed):
 ## How to use `libasm`
 
 1. Clone `libasm` in a folder first  : `git clone git@github.com:bibickette/libasm.git`
-2. Go to the `libasm` folder then compile it : `cd libasm && make` ; it will generate an executable for each function in the library
-3. You can now run a specific function test : `./ft_strlen`, or run all tests at once : `make test`
+2. Go to the `libasm` folder then compile it : `cd libasm && make`
+3. You can now run all tests : `./all_tests`
 
 
 ## Valgrind & memory checks
 
 *`libasm` was tested using **Valgrind** to ensure there are no memory leaks and that all allocated memory is properly freed.*
 
-You can run tests with **Valgrind** using the following command : `valgrind --leak-check=full --show-leak-kinds=all ./ft_strdup`
+You can run tests with **Valgrind** using the following command : `valgrind --leak-check=full --show-leak-kinds=all ./all_tests`
 
 
 * * *
