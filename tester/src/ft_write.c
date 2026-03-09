@@ -82,7 +82,7 @@ int all_ft_write(void) {
     test_both_write(1, 1, "is printed in stdout\n", ft_strlen("is printed in stdout\n"), id++);
     test_both_write(2, 2, "is printed in stderr\n", ft_strlen("is printed in stderr\n"), id++);
     test_both_write(-1, -1, "is printed in negative fd\n", ft_strlen("is printed in negative fd\n"), id++);
-    test_both_write(10, 10, "is printed in fd 10 that does not exist\n", ft_strlen("is printed in negative fd\n"), id++);
+    test_both_write(10, 10, "is printed in fd 10 that does not exist\n", ft_strlen("is printed in fd 10 that does not exist\n"), id++);
     test_both_write(1, 1, "is not right length\n", -1, id++);
 
     return 0;
