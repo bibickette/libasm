@@ -91,4 +91,4 @@ You can run tests with **Valgrind** using the following command : `valgrind --le
 
 * * *
 
-*Project validation date : TBD*
+*Project validation date : March 11, 2026*
