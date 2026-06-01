@@ -77,7 +77,7 @@ Typical Makefile targets (adapt as needed):
 
 ## How to use `libasm`
 
-1. Clone `libasm` in a folder first  : `git clone git@github.com:bibickette/libasm.git`
+1. Clone `libasm` in a folder first  : `git clone https://github.com/bibickette/libasm.git`
 2. Go to the `libasm` folder then compile it : `cd libasm && make`
 3. You can now run all tests : `./all_tests`
 
